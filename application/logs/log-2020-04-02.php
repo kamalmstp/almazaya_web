@@ -1,0 +1,51 @@
+<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+
+ERROR - 2020-04-02 05:06:06 --> Severity: Warning --> mysqli::real_connect(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: YES) C:\xampp\htdocs\sekolahku\system\database\drivers\mysqli\mysqli_driver.php 203
+ERROR - 2020-04-02 05:06:06 --> Unable to connect to the database
+ERROR - 2020-04-02 05:08:08 --> 404 Page Not Found: Media_library/images
+ERROR - 2020-04-02 05:08:21 --> 404 Page Not Found: Media_library/images
+ERROR - 2020-04-02 05:22:55 --> 404 Page Not Found: Media_library/images
+ERROR - 2020-04-02 06:06:02 --> 404 Page Not Found: Media_library/images
+ERROR - 2020-04-02 06:36:02 --> 404 Page Not Found: Media_library/images
+ERROR - 2020-04-02 07:15:03 --> 404 Page Not Found: Assets/plugins
+ERROR - 2020-04-02 07:15:03 --> 404 Page Not Found: Assets/plugins
+ERROR - 2020-04-02 07:21:59 --> 404 Page Not Found: Assets/plugins
+ERROR - 2020-04-02 07:21:59 --> 404 Page Not Found: Assets/plugins
+ERROR - 2020-04-02 07:22:37 --> 404 Page Not Found: Assets/plugins
+ERROR - 2020-04-02 07:22:37 --> 404 Page Not Found: Assets/plugins
+ERROR - 2020-04-02 07:22:42 --> 404 Page Not Found: Assets/plugins
+ERROR - 2020-04-02 07:22:42 --> 404 Page Not Found: Assets/plugins
+ERROR - 2020-04-02 07:23:06 --> 404 Page Not Found: Assets/plugins
+ERROR - 2020-04-02 07:23:06 --> 404 Page Not Found: Assets/plugins
+ERROR - 2020-04-02 08:45:16 --> 404 Page Not Found: Media_library/images
+ERROR - 2020-04-02 09:29:33 --> 404 Page Not Found: Media_library/posts
+ERROR - 2020-04-02 09:29:33 --> 404 Page Not Found: Media_library/posts
+ERROR - 2020-04-02 09:29:33 --> 404 Page Not Found: Media_library/posts
+ERROR - 2020-04-02 09:29:33 --> 404 Page Not Found: Media_library/posts
+ERROR - 2020-04-02 09:29:57 --> 404 Page Not Found: Media_library/posts
+ERROR - 2020-04-02 09:29:57 --> 404 Page Not Found: Media_library/posts
+ERROR - 2020-04-02 09:29:57 --> 404 Page Not Found: Media_library/posts
+ERROR - 2020-04-02 09:29:57 --> 404 Page Not Found: Media_library/posts
+ERROR - 2020-04-02 09:32:02 --> 404 Page Not Found: Assets/plugins
+ERROR - 2020-04-02 09:32:02 --> 404 Page Not Found: Assets/plugins
+ERROR - 2020-04-02 09:32:06 --> 404 Page Not Found: Assets/plugins
+ERROR - 2020-04-02 09:32:06 --> 404 Page Not Found: Assets/plugins
+ERROR - 2020-04-02 09:32:43 --> 404 Page Not Found: Media_library/posts
+ERROR - 2020-04-02 09:32:43 --> 404 Page Not Found: Media_library/posts
+ERROR - 2020-04-02 09:32:43 --> 404 Page Not Found: Media_library/posts
+ERROR - 2020-04-02 09:32:43 --> 404 Page Not Found: Assets/plugins
+ERROR - 2020-04-02 09:32:43 --> 404 Page Not Found: Assets/plugins
+ERROR - 2020-04-02 09:32:43 --> 404 Page Not Found: Media_library/posts
+ERROR - 2020-04-02 09:33:10 --> 404 Page Not Found: Assets/plugins
+ERROR - 2020-04-02 09:33:10 --> 404 Page Not Found: Assets/plugins
+ERROR - 2020-04-02 09:33:19 --> 404 Page Not Found: Media_library/posts
+ERROR - 2020-04-02 09:33:19 --> 404 Page Not Found: Media_library/posts
+ERROR - 2020-04-02 09:33:19 --> 404 Page Not Found: Media_library/posts
+ERROR - 2020-04-02 09:33:19 --> 404 Page Not Found: Media_library/posts
+ERROR - 2020-04-02 09:33:19 --> 404 Page Not Found: Assets/plugins
+ERROR - 2020-04-02 09:33:19 --> 404 Page Not Found: Assets/plugins
+ERROR - 2020-04-02 09:41:04 --> 404 Page Not Found: Media_library/posts
+ERROR - 2020-04-02 09:41:04 --> 404 Page Not Found: Media_library/posts
+ERROR - 2020-04-02 09:41:04 --> 404 Page Not Found: Media_library/posts
+ERROR - 2020-04-02 09:41:04 --> 404 Page Not Found: Media_library/posts
+ERROR - 2020-04-02 09:57:40 --> 404 Page Not Found: Media_library/images
