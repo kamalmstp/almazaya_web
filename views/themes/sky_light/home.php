@@ -1,5 +1,18 @@
 <!-- CONTENT -->
 <div class="col-lg-8 col-md-8 col-sm-12 ">
+	<!-- Video Terbaru -->
+	<?php $query = get_videos(2); if ($query->num_rows() > 0) { ?>
+		<h5 class="page-title mt-3 mb-3">Video Terbaru</h5>
+		<div class="row">
+			<?php foreach($query->result() as $row) { ?>
+				<div class="col-md-6 mb-3">
+					<div class="embed-responsive embed-responsive-16by9">
+						<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?=$row->post_content?>" allowfullscreen></iframe>
+					</div>
+				</div>
+			<?php } ?>
+		</div>
+	<?php } ?>
 	<!-- TULISAN POPULER -->
 	<?php $query = get_latest_posts(5); if ($query->num_rows() > 0) { ?>
 		<h5 class="page-title mb-3">Tulisan Terbaru</h5>
@@ -45,19 +58,7 @@
 		</div>
 	<?php } ?>
 
-	<!-- Video Terbaru -->
-	<?php $query = get_videos(2); if ($query->num_rows() > 0) { ?>
-		<h5 class="page-title mt-3 mb-3">Video Terbaru</h5>
-		<div class="row">
-			<?php foreach($query->result() as $row) { ?>
-				<div class="col-md-6 mb-3">
-					<div class="embed-responsive embed-responsive-16by9">
-						<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?=$row->post_content?>" allowfullscreen></iframe>
-					</div>
-				</div>
-			<?php } ?>
-		</div>
-	<?php } ?>
+	
 </div>
 
 <?php $this->load->view('themes/sky_light/sidebar')?>

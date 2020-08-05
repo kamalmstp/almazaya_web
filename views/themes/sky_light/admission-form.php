@@ -18,8 +18,17 @@
 					</div>
 				</div>
 
+				<div class="form-group row mb-2">
+					<label for="admission_type_id" class="col-sm-4 control-label">Jalur Pendaftaran <span style="color: red">*</span></label>
+					<div class="col-sm-8">
+						<select>
+							<option></option>
+						</select>
+					</div>
+				</div>
+
 				<!-- Khusus SMA/SMK/PT -->
-				<?php if (__session('major_count') > 0) { ?>
+				<!-- <?php if (__session('major_count') > 0) { ?>
 					<div class="form-group row mb-2">
 						<label for="first_choice_id" class="col-sm-4 control-label">Pilihan I (Satu) <span style="color: red">*</span></label>
 						<div class="col-sm-8">
@@ -32,10 +41,16 @@
 							<?=form_dropdown('second_choice_id', $majors, set_value('second_choice_id'), 'class="custom-select custom-select-sm rounded-0 border border-secondary" id="second_choice_id" onchange="check_options(2)" onblur="check_options(2)" onmouseup="check_options(2)"')?>
 						</div>
 					</div>
-				<?php } ?>
+				<?php } ?> -->
 
 				<!-- Khusus SMP/Sederajat dan SMA/Sederajat -->
 				<?php if (__session('school_level') == 2 || __session('school_level') == 3 || __session('school_level') == 4) { ?>
+					<div class="form-group row mb-2">
+						<label for="prev_school" class="col-sm-4 control-label">Asal Sekolah</label>
+						<div class="col-sm-8">
+							<input type="text" value="<?php echo set_value('prev_school')?>" class="form-control form-control-sm rounded-0 border border-secondary" id="prev_school" name="prev_school">
+						</div>
+					</div>
 					<div class="form-group row mb-2">
 						<label for="prev_exam_number" class="col-sm-4 control-label">Nomor Peserta Ujian Nasional Sebelumnya</label>
 						<div class="col-sm-8">
@@ -105,6 +120,13 @@
 					</div>
 				<?php } ?>
 
+				<div class="form-group row mb-2">
+					<label for="nkk" class="col-sm-4 control-label">No. KK <!-- <span style="color: red">*</span> --></label>
+					<div class="col-sm-8">
+						<input type="text" value="<?php echo set_value('nkk')?>" class="form-control form-control-sm rounded-0 border border-secondary" id="nkk" name="nkk" placeholder="Nomor Kartu Keluarga">
+					</div>
+				</div>
+
 				<!-- Khusus Selain SD -->
 				<?php if (__session('school_level') != 1) { ?>
 					<div class="form-group row mb-2">
@@ -114,6 +136,13 @@
 						</div>
 					</div>
 				<?php } ?>
+
+				<div class="form-group row mb-2">
+					<label for="no_akta" class="col-sm-4 control-label">No. Akta Kelahiran <!-- <span style="color: red">*</span> --></label>
+					<div class="col-sm-8">
+						<input type="text" value="<?php echo set_value('no_akta')?>" class="form-control form-control-sm rounded-0 border border-secondary" id="no_akta" name="no_akta" placeholder="Nomor Akta Kelahiran">
+					</div>
+				</div>
 
 				<div class="form-group row mb-2">
 					<label for="birth_place" class="col-sm-4 control-label">Tempat Lahir <span style="color: red">*</span></label>
@@ -285,9 +314,27 @@
 					</div>
 				</div>
 				<div class="form-group row mb-2">
+						<label for="father_nik" class="col-sm-4 control-label">NIK <span style="color: red">*</span></label>
+						<div class="col-sm-8">
+							<input type="text" value="<?php echo set_value('father_nik')?>" class="form-control form-control-sm rounded-0 border border-secondary" id="father_nik" name="father_nik" placeholder="Nomor Induk Kependudukan Ayah Kandung">
+						</div>
+					</div>
+				<div class="form-group row mb-2">
 					<label for="father_birth_year" class="col-sm-4 control-label">Tahun Lahir <span style="color: red">*</span></label>
 					<div class="col-sm-8">
 						<input type="text" value="<?php echo set_value('father_birth_year')?>" class="form-control form-control-sm rounded-0 border border-secondary" id="father_birth_year" name="father_birth_year" placeholder="Tahun Lahir Ayah Kandung. contoh : 1965">
+					</div>
+				</div>
+				<div class="form-group row mb-2">
+					<label for="father_mobile_phone" class="col-sm-4 control-label">Nomor HP <span style="color: red">*</span></label>
+					<div class="col-sm-8">
+						<input type="text" value="<?php echo set_value('father_mobile_phone')?>" class="form-control form-control-sm rounded-0 border border-secondary" id="father_mobile_phone" name="father_mobile_phone">
+					</div>
+				</div>
+				<div class="form-group row mb-2">
+					<label for="father_phone" class="col-sm-4 control-label">Nomor Telepon</label>
+					<div class="col-sm-8">
+						<input type="text" value="<?php echo set_value('father_phone')?>" class="form-control form-control-sm rounded-0 border border-secondary" id="father_phone" name="father_phone">
 					</div>
 				</div>
 				<div class="form-group row mb-2">
@@ -324,9 +371,27 @@
 					</div>
 				</div>
 				<div class="form-group row mb-2">
+						<label for="mother_nik" class="col-sm-4 control-label">NIK <span style="color: red">*</span></label>
+						<div class="col-sm-8">
+							<input type="text" value="<?php echo set_value('mother_nik')?>" class="form-control form-control-sm rounded-0 border border-secondary" id="mother_nik" name="mother_nik" placeholder="Nomor Induk Kependudukan Ibu Kandung ">
+						</div>
+					</div>
+				<div class="form-group row mb-2">
 					<label for="mother_birth_year" class="col-sm-4 control-label">Tahun Lahir</label>
 					<div class="col-sm-8">
 						<input type="text" value="<?php echo set_value('mother_birth_year')?>" class="form-control form-control-sm rounded-0 border border-secondary" id="mother_birth_year" name="mother_birth_year" placeholder="Tahun Lahir Ibu Kandung. contoh : 1965">
+					</div>
+				</div>
+				<div class="form-group row mb-2">
+					<label for="mother_mobile_phone" class="col-sm-4 control-label">Nomor HP <span style="color: red">*</span></label>
+					<div class="col-sm-8">
+						<input type="text" value="<?php echo set_value('mother_mobile_phone')?>" class="form-control form-control-sm rounded-0 border border-secondary" id="mother_mobile_phone" name="mother_mobile_phone">
+					</div>
+				</div>
+				<div class="form-group row mb-2">
+					<label for="mother_phone" class="col-sm-4 control-label">Nomor Telepon</label>
+					<div class="col-sm-8">
+						<input type="text" value="<?php echo set_value('mother_phone')?>" class="form-control form-control-sm rounded-0 border border-secondary" id="mother_phone" name="mother_phone">
 					</div>
 				</div>
 				<div class="form-group row mb-2">
@@ -363,9 +428,27 @@
 					</div>
 				</div>
 				<div class="form-group row mb-2">
+						<label for="guardian_nik" class="col-sm-4 control-label">NIK Wali <span style="color: red">*</span></label>
+						<div class="col-sm-8">
+							<input type="text" value="<?php echo set_value('guardian_nik')?>" class="form-control form-control-sm rounded-0 border border-secondary" id="guardian_nik" name="guardian_nik" placeholder="Nomor Induk Kependudukan Wali">
+						</div>
+					</div>
+				<div class="form-group row mb-2">
 					<label for="guardian_birth_year" class="col-sm-4 control-label">Tahun Lahir</label>
 					<div class="col-sm-8">
 						<input type="text" value="<?php echo set_value('guardian_birth_year')?>" class="form-control form-control-sm rounded-0 border border-secondary" id="guardian_birth_year" name="guardian_birth_year" placeholder="Tahun Lahir Wali. contoh : 1965">
+					</div>
+				</div>
+				<div class="form-group row mb-2">
+					<label for="guardian_mobile_phone" class="col-sm-4 control-label">Nomor HP <span style="color: red">*</span></label>
+					<div class="col-sm-8">
+						<input type="text" value="<?php echo set_value('guardian_mobile_phone')?>" class="form-control form-control-sm rounded-0 border border-secondary" id="guardian_mobile_phone" name="guardian_mobile_phone">
+					</div>
+				</div>
+				<div class="form-group row mb-2">
+					<label for="guardian_phone" class="col-sm-4 control-label">Nomor Telepon</label>
+					<div class="col-sm-8">
+						<input type="text" value="<?php echo set_value('guardian_phone')?>" class="form-control form-control-sm rounded-0 border border-secondary" id="guardian_phone" name="guardian_phone">
 					</div>
 				</div>
 				<div class="form-group row mb-2">
@@ -399,6 +482,12 @@
 					<label for="weight" class="col-sm-4 control-label">Berat Badan (Kg)</label>
 					<div class="col-sm-8">
 						<input type="number" value="<?php echo set_value('weight')?>" class="form-control form-control-sm rounded-0 border border-secondary" id="weight" name="weight">
+					</div>
+				</div>
+				<div class="form-group row mb-2">
+					<label for="head_cir" class="col-sm-4 control-label">Lingkar Kepala (Cm)</label>
+					<div class="col-sm-8">
+						<input type="number" value="<?php echo set_value('head_cir')?>" class="form-control form-control-sm rounded-0 border border-secondary" id="head_cir" name="head_cir">
 					</div>
 				</div>
 				<div class="form-group row mb-2">
