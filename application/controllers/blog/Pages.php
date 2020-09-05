@@ -142,6 +142,7 @@ class Pages extends Admin_Controller {
 			'post_status' => $this->input->post('post_status', true),
 			'post_visibility' => $this->input->post('post_visibility', true),
 			'post_comment_status' => $this->input->post('post_comment_status', true),
+			'post_news' => $this->input->post('post_news', true),
 			'post_slug' => slugify($this->input->post('post_title', true))
 		];
 	}
@@ -158,6 +159,7 @@ class Pages extends Admin_Controller {
 		$val->set_rules('post_status', 'Status', 'trim|required|in_list[publish,draft]');
 		$val->set_rules('post_visibility', 'Visibilitas', 'trim|required|in_list[public,private]');
 		$val->set_rules('post_comment_status', 'Komentar', 'trim|required|in_list[open,close]');
+		$val->set_rules('post_news', 'Level', 'trim|required|in_list[Umum,SMA,SMP]');
 		$val->set_error_delimiters('<div>&sdot; ', '</div>');
 		return $val->run();
 	}

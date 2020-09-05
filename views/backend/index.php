@@ -167,9 +167,9 @@
 			</div>
 
 			<footer class="main-footer">
-				<div class="pull-right hidden-xs">
+<!-- 				<div class="pull-right hidden-xs">
 					<p>Powered by <a href="<?=$this->config->item('website');?>" target="_blank"><?=$this->config->item('apps');?> <?=$this->config->item('version');?></a></p>
-				</div>
+				</div> -->
 				<p>Copyright &copy; <?=date('Y');?> <?=__session('school_name')?>. All rights reserved.</p>
 			</footer>
 			<div class="control-sidebar-bg"></div>

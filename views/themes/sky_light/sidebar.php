@@ -14,16 +14,16 @@
 		</div>
 	<?php } ?>
 
-	<?php $links = get_links(); if ($links->num_rows() > 0) { ?>
+<!-- 	<?php $links = get_links(); if ($links->num_rows() > 0) { ?>
 		<h5 class="page-title mb-3 <?=!in_array($this->uri->segment(1), ['sambutan-kepala-sekolah', 'sambutan-rektor', 'sambutan-ketua', 'sambutan-direktur']) ? 'mt-3' : ''?>">Tautan</h5>
 		<div class="list-group">
 			<?php foreach($links->result() as $row) { ?>
 				<a href="<?=$row->link_url?>" class="list-group-item list-group-item-action rounded-0" target="<?=$row->link_target?>"><?=$row->link_title?></a>
 			<?php } ?>
 		</div>
-	<?php } ?>
+	<?php } ?> -->
 
-	<?php $query = get_archives(date('Y')); if ($query->num_rows() > 0) { ?>
+<!-- 	<?php $query = get_archives(date('Y')); if ($query->num_rows() > 0) { ?>
 		<h5 class="page-title mt-3 mb-3">Arsip <?=date('Y')?></h5>
 		<?php foreach($query->result() as $row) { ?>
 			<a href="<?=site_url('arsip/'.date('Y').'/'.$row->code)?>" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center rounded-0 mb-1">
@@ -31,10 +31,10 @@
 				<small class="border border-secondary pt-1 pb-1 pr-2 pl-2"><?=$row->count?></small>
 			</a>
 		<?php } ?>
-	<?php } ?>
+	<?php } ?> -->
 
 	<!-- Paling Dikomentari -->
-	<?php $query = get_most_commented(5); if ($query->num_rows() > 0) { ?>
+<!-- 	<?php $query = get_most_commented(5); if ($query->num_rows() > 0) { ?>
 		<h5 class="page-title mt-3 mb-3">Paling Dikomentari</h5>
 		<div class="list-group mt-3 mb-3">
 			<?php foreach($query->result() as $row) { ?>
@@ -46,9 +46,9 @@
 				</a>
 			<?php } ?>
 		</div>
-	<?php } ?>
+	<?php } ?> -->
 
-	<?php $query = get_active_question(); if ( $query ) { ?>
+<!-- 	<?php $query = get_active_question(); if ( $query ) { ?>
 		<h5 class="page-title mt-3 mb-3">Jajak Pendapat</h5>
 		<div class="card rounded-0 border border-secondary mb-3">
 			<div class="card-body">
@@ -67,9 +67,9 @@
 				</div>
 			</div>
 		</div>
-	<?php } ?>
+	<?php } ?> -->
 
-	<h5 class="page-title mt-3 mb-3">Berlangganan</h5>
+<!-- 	<h5 class="page-title mt-3 mb-3">Berlangganan</h5>
 	<form class="card p-1 border border-secondary mt-2 mb-2 rounded-0">
 		<div class="input-group">
 			<input type="text" id="subscriber" onkeydown="if (event.keyCode == 13) { subscribe(); return false; }" class="form-control rounded-0 border border-secondary" placeholder="Email Address...">
@@ -77,14 +77,14 @@
 				<button type="button" onclick="if (event.keyCode == 13) { subscribe(); return false; }" class="btn action-button rounded-0"><i class="fa fa-envelope"></i></button>
 			</div>
 		</div>
-	</form>
+	</form> -->
 
 	<!--  Banner -->
-	<?php $query = get_banners(); if ($query->num_rows() > 0) { ?>
+<!-- 	<?php $query = get_banners(); if ($query->num_rows() > 0) { ?>
 		<h5 class="page-title mt-3 mb-3">Iklan</h5>
 		<?php foreach($query->result() as $row) { ?>
 			<a href="<?=$row->link_url?>" title="<?=$row->link_title?>"><img src="<?=base_url('media_library/banners/'.$row->link_image)?>" class="img-fluid mb-2 w-100" alt="<?=$row->link_title?>"></a>
 		<?php } ?>
-	<?php } ?>
+	<?php } ?> -->
 </div>
 <!-- /CONTENT -->

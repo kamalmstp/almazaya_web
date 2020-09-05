@@ -2,7 +2,7 @@
 <div class="col-lg-8 col-md-8 col-sm-12 ">
 	<!-- Video Terbaru -->
 	<?php $query = get_videos(2); if ($query->num_rows() > 0) { ?>
-		<h5 class="page-title mt-3 mb-3">Video Terbaru</h5>
+		<h1 class="page-title mt-3 mb-3">Video Terbaru</h1>
 		<div class="row">
 			<?php foreach($query->result() as $row) { ?>
 				<div class="col-md-6 mb-3">
@@ -15,7 +15,7 @@
 	<?php } ?>
 	<!-- TULISAN POPULER -->
 	<?php $query = get_latest_posts(5); if ($query->num_rows() > 0) { ?>
-		<h5 class="page-title mb-3">Tulisan Terbaru</h5>
+		<h1 class="page-title mb-3">Tulisan Terbaru</h1>
 		<?php foreach($query->result() as $row) { ?>
 			<div class="card rounded-0 border border-secondary mb-3">
 				<div class="row">

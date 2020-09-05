@@ -57,6 +57,7 @@ class M_posts extends CI_Model {
 		$this->db->where('x1.post_type', 'post');
 		$this->db->where('x1.post_status', 'publish');
 		$this->db->where('x1.is_deleted', 'false');
+		$this->db->where('x1.post_news','SMP');
 		if ( ! $this->auth->hasLogin() ) {
 			$this->db->where('x1.post_visibility', 'public');
 		}

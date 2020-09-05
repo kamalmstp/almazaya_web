@@ -102,6 +102,7 @@
 		dataset.append('post_status', $('#post_status').val());
 		dataset.append('post_visibility', $('#post_visibility').val());
 		dataset.append('post_comment_status', $('#post_comment_status').val());
+		dataset.append('post_news', $('#post_news').val());
 		dataset.append('post_image', $('input[type=file]')[ 0 ].files[ 0 ]);
 		dataset.append('post_tags', $('#post_tags').val());
 		// send data
@@ -230,8 +231,16 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="control-label" for="post_comment_status">Komentar</label>
-							<?=form_dropdown('post_comment_status', ['open' => 'Diizinkan', 'close' => 'Tidak Diizinkan'], ($query ? $query->post_comment_status : ''), 'class="form-control input-sm" id="post_comment_status"');?>
+							<div class="row">
+								<div class="col-lg-6">
+									<label class="control-label" for="post_comment_status">Komentar</label>
+									<?=form_dropdown('post_comment_status', ['open' => 'Diizinkan', 'close' => 'Tidak Diizinkan'], ($query ? $query->post_comment_status : ''), 'class="form-control input-sm" id="post_comment_status"');?>
+								</div>
+								<div class="col-lg-6">
+									<label class="control-label" for="post_news">Level</label>
+									<?=form_dropdown('post_news', ['Umum' => 'Umum', 'SMA' => 'SMA', 'SMP' => 'SMP'], ($query ? $query->post_news : ''), 'class="form-control input-sm" id="post_news"');?>
+								</div>
+							</div>
 						</div>
 						<div class="form-group">
 							<label class="control-label">Gambar</label>

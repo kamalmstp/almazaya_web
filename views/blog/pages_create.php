@@ -68,6 +68,7 @@ function submit_posts() {
       post_status: $('#post_status').val(),
       post_visibility: $('#post_visibility').val(),
       post_comment_status: $('#post_comment_status').val()
+      post_news: $('#post_news').val()
    };
    // send data
    $.post('<?=$action;?>', field_data, function(response) {
@@ -79,6 +80,7 @@ function submit_posts() {
          $('#post_status').val('publish');
          $('#post_visibility').val('public');
          $('#post_comment_status').val('open');
+         $('#post_news').val('Umum');
          tinyMCE.get('post_content').setContent('');
          $('#post_title').focus();
       }
@@ -134,8 +136,16 @@ function submit_posts() {
                      </div>
                   </div>
                   <div class="form-group">
-                     <label class="control-label" for="post_comment_status">Komentar</label>
-                     <?=form_dropdown('post_comment_status', ['open' => 'Diizinkan', 'close' => 'Tidak Diizinkan'], ($query ? $query->post_comment_status : ''), 'class="form-control select2 input-sm" id="post_comment_status"');?>
+                     <div class="row">
+                        <div class="col-lg-6">
+                           <label class="control-label" for="post_comment_status">Komentar</label>
+                           <?=form_dropdown('post_comment_status', ['open' => 'Diizinkan', 'close' => 'Tidak Diizinkan'], ($query ? $query->post_comment_status : ''), 'class="form-control select2 input-sm" id="post_comment_status"');?>
+                        </div>
+                        <div class="col-lg-6">
+                           <label class="control-label" for="post_news">Level</label>
+                           <?=form_dropdown('post_news', ['Umum' => 'Umum', 'SMA' => 'SMA', 'SMP' => 'SMP'], ($query ? $query->post_news : ''), 'class="form-control select2 input-sm" id="post_news"');?>
+                        </div>
+                     </div>
                   </div>
                </div>
                <div class="box-footer">

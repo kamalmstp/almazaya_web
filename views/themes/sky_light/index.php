@@ -45,7 +45,7 @@
 		<meta property="og:description" content="<?=word_limiter(strip_tags($query->post_content), 30)?>" />
 		<meta property="og:image" content="<?=base_url('media_library/posts/large/'.$query->post_image)?>" />
 	<?php } ?>
-	<link rel="icon" href="<?=base_url('media_library/images/'.__session('favicon'));?>">
+	<link rel="icon" href="<?=base_url('media_library/images/SMP.png');?>">
 	<link rel="alternate" type="application/rss+xml" title="<?=__session('school_name');?> Feed" href="<?=base_url('feed')?>" />
 	<?=link_tag('assets/plugins/bootstrap-4/bootstrap.min.css')?>
 	<?=link_tag('assets/css/font-awesome.min.css')?>
@@ -85,7 +85,7 @@
 				<div class="row align-items-center">
 					<div class="col-md-5 col-sm-12 col-xs-12">
 						<div class="top-header">
-							<img src="<?=base_url('media_library/images/' . __session('logo'))?>" width="70" height="70" class="mt-2 mr-4 mb-3">
+							<img src="<?=base_url('media_library/images/SMP.png')?>" width="70" height="70" class="mt-2 mr-4 mb-3">
 							<ul class="list-unstyled top-left">
 								<li><h5 class="font-weight-bold brand"><?=strtoupper(__session('school_name'))?></h5></li>
 								<li><small><?=__session('tagline')?></small></li>
@@ -105,9 +105,9 @@
 		</div>
 		<!--  NAVIGATION MENU -->
 		<div class="container-fluid menu-bar mb-3" data-toggle="sticky-menu">
-			<div class="container p-0">
+			<div class="container">
 				<nav class="navbar navbar-expand-lg p-0">
-					<a class="navbar-brand" href="#"></a>
+					<a class="navbar-brand" href="#"></a>					
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="fa fa-align-justify text-white"></span>
 					</button>
@@ -124,7 +124,7 @@
 								$sub_nav = recursive_list($menu['children']);
 								if ($sub_nav) echo '<ul>' . $sub_nav . '</ul>';
 								echo '</li>';
-							}?>
+							}?>							
 						</ul>
 					</div>
 				</nav>
@@ -235,9 +235,9 @@
 					<div class="col-md-6 col-xs-12 text-md-left text-center">
 						<?=copyright(2020, base_url(), __session('school_name'))?>
 					</div>
-					<div class="col-md-6 col-xs-12 text-md-right text-center">
+<!-- 					<div class="col-md-6 col-xs-12 text-md-right text-center">
 						Powered by <a href="http://sekolahku.web.id">sekolahku.web.id</a>
-					</div>
+					</div> -->
 				</div>
 			</div>
 		</div>
