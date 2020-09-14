@@ -28,7 +28,7 @@ class By_class_groups extends Admin_Controller {
 			'm_academic_years'
 		]);
 	}
-
+ 
 	/**
 	 * Index
 	 * @return Void

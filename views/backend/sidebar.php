@@ -109,6 +109,7 @@
 							<a href="#"><i class="fa fa-sign-out"></i> Data Induk <i class="fa fa-angle-left pull-right"></i></a>
 							<ul class="treeview-menu">
 								<li <?=isset($alumni) ? 'class="active"':'';?>><a href="<?=site_url('academic/alumni');?>"><i class="fa fa-sign-out"></i> Alumni</a></li>
+								<li <?=isset($tracer) ? 'class="active"':'';?>><a href="<?=site_url('academic/tracer');?>"><i class="fa fa-sign-out"></i> Tracer Study</a></li>
 								<li <?=isset($majors) ? 'class="active"':'';?>><a href="<?=site_url('academic/majors');?>"><i class="fa fa-sign-out"></i> <?=__session('_major')?></a></li>
 								<li <?=isset($class_groups) ? 'class="active"':'';?>><a href="<?=site_url('academic/class_groups');?>"><i class="fa fa-sign-out"></i> Kelas</a></li>
 								<li <?=isset($transportations) ? 'class="active"':'';?>><a href="<?=site_url('academic/transportations');?>"><i class="fa fa-sign-out"></i> Moda Transportasi</a></li>

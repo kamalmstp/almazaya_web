@@ -85,3 +85,4 @@ class M_class_groups extends CI_Model {
 		return $dataset;
 	}
 }
+ 
