@@ -4,7 +4,7 @@ $this->load->view('backend/grid_index');?>
 DS.Majors = _H.StrToObject('<?=$major_dropdown;?>');
 var _grid = 'CLASS_GROUPS', _form = _grid + '_FORM';
 new GridBuilder( _grid , {
-   controller:'academic/class_groups',
+   controller:'academic/class_groups', 
    fields: [
       {
          header: '<input type="checkbox" class="check-all">',

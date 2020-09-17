@@ -24,19 +24,15 @@ new GridBuilder( _grid , {
       },
       { header:'Nama Lengkap', renderer:'nama' },
       { header:'Nama Sekolah', renderer:'sekolah' },
-      { header:'Tahun Ajaran', renderer:'year_id' }
+      { header:'Tahun Ajaran', renderer:'academic_year' }
    ]
 });
 
 var fields = [
    { label:'Nama', name:'nama' },
    { label:'Nama Sekolah', name:'sekolah' },
+   { label:'Tahun Ajaran', name:'academic_year', type:'select', datasource:DS.Academic_years }
 ];
-if (_MAJOR_COUNT > 0) {
-   fields.push(
-      { label:'Tahun Ajaran', name:'year_id', type:'select', datasource:DS.Academic_years }
-   );
-}
 
 new FormBuilder( _form , {
    controller:'academic/tracer',

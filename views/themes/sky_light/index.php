@@ -124,7 +124,17 @@
 								$sub_nav = recursive_list($menu['children']);
 								if ($sub_nav) echo '<ul>' . $sub_nav . '</ul>';
 								echo '</li>';
-							}?>							
+							}?>	
+							<li><a href="#">Al-Qur'an</a>
+								<ul>
+									<li><a href="http://qurantematik.almazayaislamicschool.sch.id/">Al-Qur'an Tematik</a>
+									</li>
+									<li><a href="http://quran.almazayaislamicschool.sch.id/">Al-Qur'an</a>
+									</li>
+								</ul>
+							</li>
+							<li><a href="http://virtualclass.almazayaislamicschool.sch.id/">Virtual Class</a>
+							</li>						
 						</ul>
 					</div>
 				</nav>

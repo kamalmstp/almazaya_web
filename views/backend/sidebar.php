@@ -108,6 +108,7 @@
 						<li class="treeview <?=isset($academic_references) ? 'active':'';?>">
 							<a href="#"><i class="fa fa-sign-out"></i> Data Induk <i class="fa fa-angle-left pull-right"></i></a>
 							<ul class="treeview-menu">
+								<li <?=isset($prestasi) ? 'class="active"':'';?>><a href="<?=site_url('academic/prestasi');?>"><i class="fa fa-sign-out"></i> Prestasi Siswa</a></li>
 								<li <?=isset($alumni) ? 'class="active"':'';?>><a href="<?=site_url('academic/alumni');?>"><i class="fa fa-sign-out"></i> Alumni</a></li>
 								<li <?=isset($tracer) ? 'class="active"':'';?>><a href="<?=site_url('academic/tracer');?>"><i class="fa fa-sign-out"></i> Tracer Study</a></li>
 								<li <?=isset($majors) ? 'class="active"':'';?>><a href="<?=site_url('academic/majors');?>"><i class="fa fa-sign-out"></i> <?=__session('_major')?></a></li>

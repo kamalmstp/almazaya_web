@@ -11,7 +11,7 @@ class Tracer extends Admin_Controller {
 		$this->pk = M_tracer::$pk;
 		$this->table = M_tracer::$table;
 	}
-
+ 
 	public function index() {
 		$this->vars['title'] = 'Kelas';
 		$this->vars['academic'] = $this->vars['academic_references'] = $this->vars['tracer'] = TRUE;
@@ -66,8 +66,7 @@ class Tracer extends Admin_Controller {
 		return [
 			'nama' => $this->input->post('nama', true),
 			'sekolah' => $this->input->post('sekolah', true),
-			'year_id' => _toInteger($this->input->post('year_id', true)) ? _toInteger($this->input->post('year_id', true)) : 0
-		];
+			'academic_year' => $this->input->post('academic_year', true)];
 	}
 
 	private function validation() {
@@ -75,7 +74,7 @@ class Tracer extends Admin_Controller {
 		$val = $this->form_validation;
 		$val->set_rules('nama', 'Nama Lengkap', 'trim|required');
 		$val->set_rules('sekolah', 'Sekolah', 'trim|required');
-		$val->set_rules('year_id', 'Tahun Ajaran', 'trim');
+		$val->set_rules('academic_year', 'Tahun Ajaran', 'trim');
 		$val->set_message('required', '{field} harus diisi');
 		$val->set_error_delimiters('<div>&sdot; ', '</div>');
 		return $val->run();

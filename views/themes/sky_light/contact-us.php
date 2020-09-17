@@ -16,7 +16,7 @@
 			<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3983.1027843881548!2d114.58001931428657!3d-3.3247756421830923!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2de423d0ed3b00b9%3A0x1e355c4ecd2abecb!2sAl%20Mazaya%20Junior%20High%20School%20Islamic%20School!5e0!3m2!1sen!2sid!4v1585804373538!5m2!1sen!2sid" width="900" height="300" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
 		</div>
 	</div>
-	<div class="card rounded-0 border border-secondary mb-3">
+	<!-- <div class="card rounded-0 border border-secondary mb-3">
 		<div class="card-body">
 			<div class="form-group row mb-2">
 				<label for="comment_author" class="col-sm-3 control-label">Nama Lengkap <span style="color: red">*</span></label>
@@ -58,6 +58,6 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 </div>
 <?php $this->load->view('themes/sky_light/sidebar')?>

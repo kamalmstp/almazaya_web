@@ -56,6 +56,7 @@ class M_posts extends CI_Model {
 		");
 		$this->db->join('users x2', 'x1.post_author = x2.id', 'LEFT');
 		$this->db->where('x1.post_type', 'post');
+		$this->db->order_by('id','desc');
 		if (in_array(__session('user_type'), ['student', 'employee'])) {
 			$this->db->where('x1.post_author', __session('user_id'));
 		}

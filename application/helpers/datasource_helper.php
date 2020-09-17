@@ -365,7 +365,8 @@ if (! function_exists('modules')) {
 			'galeri-foto' => 'Galeri Foto',
 			'galeri-video' => 'Galeri Video',
 			'pendaftaran-alumni' => 'Pendaftaran Alumni',
-			'direktori-alumni' => 'Direktori Alumni'
+			'direktori-alumni' => 'Direktori Alumni',
+			'tracer-study' => 'Penulusuran Alumni'
 		];
 		// '1 - Sekolah Dasar (SD)/ Sederajat', // SD
 		// '2 - Sekolah Menengah Pertama (SMP)/ Sederajat', // SMP
@@ -388,6 +389,7 @@ if (! function_exists('modules')) {
 			$modules['hasil-seleksi-penerimaan-peserta-didik-baru'] = 'Hasil Seleksi PPDB';
 			$modules['cetak-formulir-penerimaan-peserta-didik-baru'] = 'Cetak Formulir PPDB';
 			$modules['download-formulir-penerimaan-peserta-didik-baru'] = 'Download Formulir PPDB';
+			$modules['tracer-study'] = 'Penulusuran Alumni';
 		}
 		return $key == '' ? $modules : $modules[$key];
 	}

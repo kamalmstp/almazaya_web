@@ -30,7 +30,7 @@ class Posts extends Admin_Controller {
 		$this->pk = M_posts::$pk;
 		$this->table = M_posts::$table;
 	}
-
+ 
 	/**
 	 * Index
 	 * @return Void
