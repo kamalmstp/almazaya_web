@@ -87,6 +87,7 @@ $route['vote'] = 'public/pollings/save';
 $route['student-registration'] = 'public/admission_form/save';
 $route['admission-selection-results'] = 'public/admission_selection_results/get_results';
 $route['tracer-study'] = 'public/tracer_study';
+$route['prestasi-siswa'] = 'public/prestasi_siswa';
 // PPDB
 $route['formulir-penerimaan-peserta-didik-baru'] = 'public/admission_form';
 $route['hasil-seleksi-penerimaan-peserta-didik-baru'] = 'public/admission_selection_results';
