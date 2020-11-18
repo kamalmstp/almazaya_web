@@ -26,7 +26,7 @@ class M_registrants extends CI_Model {
 	 * Table
 	 * @var String
 	 */
-	public static $table = 'students';
+	public static $table = 'registrants_junior';
 
 	/**
 	 * Admission Year
@@ -40,8 +40,8 @@ class M_registrants extends CI_Model {
 	 */
 	public function __construct() {
 		parent::__construct();
-		$year = __session('admission_year');
-		$this->admission_year = (NULL !== $year && $year > 0) ? $year : date('Y');
+		// $year = __session('admission_year');
+		// $this->admission_year = (NULL !== $year && $year > 0) ? $year : date('Y');
 	}
 
 	/**
@@ -54,37 +54,38 @@ class M_registrants extends CI_Model {
 	public function get_where($keyword = '', $return_type = 'count', $limit = 0, $offset = 0) {
 		$fields = [
 			"x1.id"
-			, "x1.registration_number"
-			, "x1.re_registration"
+			// , "x1.registration_number"
+			// , "x1.re_registration"
 			, "x1.created_at"
 			, "x1.full_name"
 			, "x1.birth_date"
 			, "IF(x1.gender = 'M', 'L', 'P') AS gender"
 			, "x1.photo"
+			, "x1.school_level"
 			, "x1.is_deleted"
 		];
-		if (__session('major_count') > 0) {
-			array_push($fields, 'x2.major_name AS first_choice');
-			array_push($fields, 'x3.major_name AS second_choice');
-		}
+		// if (__session('major_count') > 0) {
+		// 	array_push($fields, 'x2.major_name AS first_choice');
+		// 	array_push($fields, 'x3.major_name AS second_choice');
+		// }
 		$this->db->select(implode(', ', $fields));
-		if (__session('major_count') > 0) {
-			$this->db->join('majors x2', 'x1.first_choice_id = x2.id', 'LEFT');
-			$this->db->join('majors x3', 'x1.second_choice_id = x3.id', 'LEFT');
-		}
-		$this->db->where('x1.is_prospective_student', 'true');
-		$this->db->where('LEFT(x1.registration_number, 4) = ', $this->admission_year);
+		// if (__session('major_count') > 0) {
+		// 	$this->db->join('majors x2', 'x1.first_choice_id = x2.id', 'LEFT');
+		// 	$this->db->join('majors x3', 'x1.second_choice_id = x3.id', 'LEFT');
+		// }
+		// $this->db->where('x1.is_prospective_student', 'true');
+		// $this->db->where('LEFT(x1.registration_number, 4) = ', $this->admission_year);
 		if ( ! empty($keyword) ) {
 			$this->db->group_start();
-			$this->db->like('x1.registration_number', $keyword);
-			$this->db->or_like('x1.re_registration', $keyword);
-			$this->db->or_like('x1.created_at', $keyword);
-			if (__session('major_count') > 0) {
-				$this->db->or_like('x2.major_name', $keyword);
-				$this->db->or_like('x3.major_name', $keyword);
-			}
-			$this->db->or_like('x1.full_name', $keyword);
-			$this->db->or_like('x1.gender', $keyword);
+			// $this->db->like('x1.registration_number', $keyword);
+			// $this->db->or_like('x1.re_registration', $keyword);
+			// $this->db->or_like('x1.created_at', $keyword);
+			// if (__session('major_count') > 0) {
+			// 	$this->db->or_like('x2.major_name', $keyword);
+			// 	$this->db->or_like('x3.major_name', $keyword);
+			// }
+			// $this->db->or_like('x1.full_name', $keyword);
+			// $this->db->or_like('x1.gender', $keyword);
 			$this->db->group_end();
 		}
 		if ( $return_type == 'count' ) return $this->db->count_all_results(self::$table . ' x1');
@@ -228,41 +229,26 @@ class M_registrants extends CI_Model {
 	 * @param String $birth_date
 	 * @return Array
 	 */
-	public function find_registrant($registration_number, $birth_date) {
+	public function find_registrant($id, $birth_date) {
 		$this->db->select("
 			x1.id
-		  , IF(x1.is_transfer='true', 'Pindahan', 'Baru') AS is_transfer
-		  , x1.registration_number
 		  , x1.created_at
-		  , x2.major_name AS first_choice
-		  , x3.major_name AS second_choice
-		  , x1.prev_school_name
-		  , x1.prev_school_address
+		  , x1.prev_school
 		  , x1.full_name
 		  , IF(x1.gender = 'M', 'Laki-laki', 'Perempuan') AS gender
-		  , x1.nisn
-		  , x1.nik
 		  , x1.birth_place
 		  , x1.birth_date
-		  , x4.option_name AS religion
-		  , x5.option_name AS special_needs
-		  , x6.option_name AS admission_type
-		  , x1.street_address
-		  , x1.rt
-		  , x1.rw
+		  , x1.address
 		  , x1.sub_district
 		  , x1.district
-		  , x1.sub_village
 		  , x1.village
-		  , x1.postal_code
-		  , x1.email
 		");
-		$this->db->join('majors x2', 'x1.first_choice_id = x2.id', 'LEFT');
-		$this->db->join('majors x3', 'x1.second_choice_id = x3.id', 'LEFT');
-		$this->db->join('options x4', 'x1.religion_id = x4.id', 'LEFT');
-		$this->db->join('options x5', 'x1.special_need_id = x5.id', 'LEFT');
-		$this->db->join('options x6', 'x1.admission_type_id = x6.id', 'LEFT');
-		$this->db->where('x1.registration_number', $registration_number);
+		// $this->db->join('majors x2', 'x1.first_choice_id = x2.id', 'LEFT');
+		// $this->db->join('majors x3', 'x1.second_choice_id = x3.id', 'LEFT');
+		// $this->db->join('options x4', 'x1.religion_id = x4.id', 'LEFT');
+		// $this->db->join('options x5', 'x1.special_need_id = x5.id', 'LEFT');
+		// $this->db->join('options x6', 'x1.admission_type_id = x6.id', 'LEFT');
+		$this->db->where('x1.id', $id);
 		$this->db->where('x1.birth_date', $birth_date);
 		return $this->db->get(self::$table.' x1')->row_array();
 	}
@@ -273,23 +259,149 @@ class M_registrants extends CI_Model {
 	 * @param String $birth_date
 	 * @return Boolean
 	 */
-	public function is_valid_registrant($registration_number, $birth_date) {
-		$this->db->where('registration_number', $registration_number);
+	public function is_valid_registrant($id, $birth_date) {
+		$this->db->where('id', $id);
 		$this->db->where('birth_date', $birth_date);
 		$count = $this->db->count_all_results(self::$table);
 		return $count > 0;
 	}
 
-	/**
-	 * Admission Reports
-	 * @return Resource
-	 */
+	public function registrant_query() {
+		return "
+			SELECT x1.id
+				-- a, x2.major_name
+				-- , x3.major_name AS first_choice
+				-- , x4.major_name AS second_choice
+				-- , x1.registration_number
+				, x1.first_school_year
+				, x1.last_school_year
+				, x1.created_at
+				-- , x1.admission_exam_number
+				-- , x1.prev_exam_number
+				-- , CASE WHEN x1.selection_result IS NULL THEN 'Belum Diseleksi'
+				-- 	WHEN x1.selection_result = 'approved' THEN 'Diterima'
+				-- 	WHEN x1.selection_result = 'unapproved' THEN 'Tidak Diterima'
+				-- 	WHEN x1.selection_result > 0 THEN (SELECT major_name FROM majors WHERE id = x1.selection_result)
+				-- 	ELSE '-'
+				-- 	END AS selection_result
+				, CASE WHEN x1.is_approved = 'true' THEN 'Diterima'
+					WHEN x1.is_approved = 'false' THEN 'Tidak Diterima'
+					ELSE 'Belum Diseleksi'
+					END AS is_approved
+				-- , x1.is_approved
+				-- , x5.phase_name
+				-- , x6.option_name AS admission_type
+				, x1.photo
+				-- , IF(x1.is_transfer = 'true', 'Pindahan', 'Baru') AS is_transfer
+				-- , x1.achievement
+				-- , IF(x1.re_registration = 'true', 'Ya', 'Tidak') AS re_registration
+				-- , x1.start_date
+				-- , x1.identity_number
+				-- , x1.nisn
+				-- , x1.nik
+				-- , x1.prev_diploma_number
+				-- , IF(x1.paud = 'true', 'Ya', 'Tidak') AS paud
+				-- , IF(x1.tk = 'true', 'Ya', 'Tidak') AS tk
+				-- , x1.skhun
+				-- , x1.prev_school_name
+				, x1.prev_school
+				, x1.graduation_year
+				-- , x1.prev_school_address
+				-- , x1.hobby
+				-- , x1.ambition
+				, x1.full_name
+				, IF(x1.gender = 'M', 'Laki-laki', 'Perempuan') AS gender
+				, x1.birth_place
+				, x1.birth_date
+				-- , x7.option_name AS religion
+				-- , x8.option_name AS special_need
+				, x1.address
+				-- , x1.rt
+				-- , x1.rw
+				-- , x1.sub_village
+				, x1.village
+				, x1.sub_district
+				, x1.district
+				-- , x1.postal_code
+				-- , x9.option_name AS residence
+				-- , x10.option_name AS transportation
+				, x1.phone
+				-- , x1.mobile_phone
+				-- , x1.email
+				-- , x1.sktm
+				-- , x1.kks
+				-- , x1.kps
+				-- , x1.kip
+				-- , x1.kis
+				-- , x1.citizenship
+				-- , x1.country
+				, x1.father_name
+				-- , x1.father_birth_year
+				-- , x11.option_name AS father_education
+				, x12.option_name AS father_employment
+				-- , x13.option_name AS father_monthly_income
+				-- , x14.option_name AS father_special_need
+				, x1.mother_name
+				-- , x1.mother_birth_year
+				-- , x15.option_name AS mother_education
+				, x16.option_name AS mother_employment
+				-- , x17.option_name AS mother_monthly_income
+				-- , x18.option_name AS mother_special_need
+				-- , x1.guardian_name
+				-- , x1.guardian_birth_year
+				-- , x19.option_name AS guardian_education
+				-- , x20.option_name AS guardian_employment
+				-- , x21.option_name AS guardian_monthly_income
+				-- , x1.mileage
+				-- , x1.traveling_time
+				-- , x1.height
+				-- , x1.weight
+				-- , x1.sibling_number
+				-- , x1.status
+				-- , x1.end_date
+				-- , x1.reason
+			FROM registrants_junior x1
+			-- LEFT JOIN majors x2 ON x1.major_id = x2.id
+			-- LEFT JOIN majors x3 ON x1.first_choice_id = x3.id
+			-- LEFT JOIN majors x4 ON x1.second_choice_id = x4.id
+			-- LEFT JOIN admission_phases x5 ON x1.admission_phase_id = x5.id
+			-- LEFT JOIN options x6 ON x1.admission_type_id = x6.id
+			-- LEFT JOIN options x7 ON x1.religion_id = x7.id
+			-- LEFT JOIN options x8 ON x1.special_need_id = x8.id
+			-- LEFT JOIN options x9 ON x1.residence_id = x9.id
+			-- LEFT JOIN options x10 ON x1.transportation_id = x10.id
+			-- LEFT JOIN options x11 ON x1.father_education_id = x11.id
+			LEFT JOIN options x12 ON x1.father_employment = x12.id
+			-- LEFT JOIN options x13 ON x1.father_monthly_income_id = x13.id
+			-- LEFT JOIN options x14 ON x1.father_special_need_id = x14.id
+			-- LEFT JOIN options x15 ON x1.mother_education_id = x15.id
+			LEFT JOIN options x16 ON x1.mother_employment = x16.id
+			-- LEFT JOIN options x17 ON x1.mother_monthly_income_id = x17.id
+			-- LEFT JOIN options x18 ON x1.mother_special_need_id = x18.id
+			-- LEFT JOIN options x19 ON x1.guardian_education_id = x19.id
+			-- LEFT JOIN options x20 ON x1.guardian_employment_id = x20.id
+			-- LEFT JOIN options x21 ON x1.guardian_monthly_income_id = x21.id
+			-- LEFT JOIN options x22 ON x1.student_status_id = x22.id
+			WHERE 1=1
+		";
+	}
+
 	public function admission_reports() {
-		$this->load->model('m_students');
-		$query = $this->m_students->student_query();
+		// $this->load->model('m_students');
+		$query = $this->registrant_query();
 		$query .= "
-		AND x1.is_prospective_student='true'
-		ORDER BY x1.registration_number, x1.full_name ASC";
+		AND x1.is_deleted='false'
+		ORDER BY x1.id, x1.full_name ASC";
 		return $this->db->query($query);
+	}
+
+	public function profile($id) {
+		// $this->load->model('m_students');
+		// $query = $this->m_students->student_query();
+		$query = $this->registrant_query();
+		$query .= '
+		AND x1.id = ?
+		';
+		return $this->db->query($query, [_toInteger($id)])->row();
 	}
 }

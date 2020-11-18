@@ -14,17 +14,17 @@ new GridBuilder( _grid , {
 			exclude_excel: true,
 			sorting: false
 		},
-		{ header:'No. Daftar', renderer:'registration_number' },
+		{ header:'No. Daftar', renderer:'id' },
 		{ header:'Tanggal Daftar', renderer:'created_at' },
-		{
-			header:'Daftar Ulang ?',
-			renderer: function( row ) {
-				var re_registration = row.re_registration;
-				return re_registration == 'true' ? '<i class="fa fa-check-square-o"></i>' : '<i class="fa fa-warning"></i>';
-			},
-			sort_field: 're_registration'
-		},
-		{ header:'Hasil Seleksi', renderer:'selection_result' },
+		// {
+		// 	header:'Daftar Ulang ?',
+		// 	renderer: function( row ) {
+		// 		var re_registration = row.re_registration;
+		// 		return re_registration == 'true' ? '<i class="fa fa-check-square-o"></i>' : '<i class="fa fa-warning"></i>';
+		// 	},
+		// 	sort_field: 're_registration'
+		// },
+		{ header:'Hasil Seleksi', renderer:'is_approved' },
 		{ header:'Nama Lengkap', renderer:'full_name' },
 		{ header:'Tanggal Lahir', renderer:'birth_date' },
 		{
@@ -45,7 +45,7 @@ new GridBuilder( _grid , {
 new FormBuilder( _form , {
 	controller:'admission/registrants_approved',
 	fields: [
-		{ label:'Hasil Seleksi', name:'selection_result', type:'select', datasource:DS.Options }
+		{ label:'Hasil Seleksi', name:'is_approved', type:'select', datasource:DS.Options }
 	]
 });
 </script>

@@ -36,13 +36,13 @@ class Registrants_approved extends Admin_Controller {
 		$this->vars['admission'] = $this->vars['registrants_approved'] = TRUE;
 		$options = [];
 		$options['unset'] = 'Hapus Dari Hasil Seleksi';
-		$options['unapproved'] = 'Tidak Diterima';
-		if (__session('major_count') > 0) {
-			$query = $this->m_majors->dropdown();
-			foreach ($query as $key => $value) {
-				$options[$key] = 'Diterima di '. $value;
-			}
-		}
+		$options['false'] = 'Tidak Diterima';
+		// if (__session('major_count') > 0) {
+		// 	$query = $this->m_majors->dropdown();
+		// 	foreach ($query as $key => $value) {
+		// 		$options[$key] = 'Diterima di '. $value;
+		// 	}
+		// }
 		$this->vars['options'] = json_encode($options, JSON_HEX_APOS | JSON_HEX_QUOT);
 		$this->vars['content'] = 'admission/registrants_approved';
 		$this->load->view('backend/index', $this->vars);
@@ -105,7 +105,7 @@ class Registrants_approved extends Admin_Controller {
 	 */
 	private function dataset() {
 		return [
-			'selection_result' => $this->input->post('selection_result') == 'unset' ? NULL : $this->input->post('selection_result')
+			'is_approved' => $this->input->post('is_approved') == 'unset' ? NULL : $this->input->post('is_approved')
 		];
 	}
 
@@ -116,7 +116,7 @@ class Registrants_approved extends Admin_Controller {
 	private function validation() {
 		$this->load->library('form_validation');
 		$val = $this->form_validation;
-		$val->set_rules('selection_result', 'Hasil Seleksi', 'trim|required');
+		$val->set_rules('is_approved', 'Hasil Seleksi', 'trim|required');
 		$val->set_error_delimiters('<div>&sdot; ', '</div>');
 		return $val->run();
 	}

@@ -14,9 +14,9 @@ new GridBuilder( _grid , {
 			exclude_excel: true,
 			sorting: false
 		},
-		{ header:'No. Pendaftaran', renderer:'registration_number' },
+		{ header:'No. Pendaftaran', renderer:'id' },
 		{ header:'Tanggal Pendaftaran', renderer:'created_at' },
-		{ header:'Pendaftaran Ulang', renderer:'re_registration' },
+		// { header:'Pendaftaran Ulang', renderer:'re_registration' },
 		{ header:'Nama Lengkap', renderer:'full_name' },
 		{ header:'Tanggal Lahir', renderer:'birth_date' },
 		{
@@ -37,7 +37,7 @@ new GridBuilder( _grid , {
 new FormBuilder( _form , {
 	controller:'admission/registrants_unapproved',
 	fields: [
-		{ label:'Hasil Seleksi', name:'selection_result', type:'select', datasource:DS.Options }
+		{ label:'Hasil Seleksi', name:'is_approved', type:'select', datasource:DS.Options }
 	]
 });
 </script>
