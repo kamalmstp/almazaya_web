@@ -38,7 +38,8 @@
 	<meta itemprop="description" content="<?=__session('meta_description');?>" />
 	<meta itemprop="image" content="<?=base_url('media_library/images/'. __session('logo'));?>" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<link rel="icon" href="<?=base_url('media_library/images/'.__session('favicon'));?>">
+	<!-- <link rel="icon" href="<?=base_url('media_library/images/'.__session('favicon'));?>"> -->
+	<link rel="icon" href="<?=base_url('media_library/images/SMP.png');?>">
 	<?=link_tag('assets/plugins/bootstrap-3/bootstrap.min.css');?>
 	<?=link_tag('assets/css/font-awesome.min.css');?>
 	<?=link_tag('assets/plugins/toastr/toastr.css');?>

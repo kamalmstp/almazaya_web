@@ -39,7 +39,7 @@ class Tracer extends Admin_Controller {
 			exit;
 		}
 	}
-
+ 
 	public function save() {
 		if ($this->input->is_ajax_request()) {
 			$id = _toInteger($this->input->post('id', true));

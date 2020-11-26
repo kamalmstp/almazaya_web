@@ -182,6 +182,7 @@
 						<i class="fa fa-address-book-o"></i> <span><?=__session('school_level') >= 5 ? 'PMB' : 'PPDB'?> <?=NULL !== __session('admission_year') ? __session('admission_year') : date('Y');?> </span> <i class="fa fa-angle-left pull-right"></i>
 					</a>
 					<ul class="treeview-menu">
+						<li <?=isset($guest) ? 'class="active"':'';?>><a href="<?=site_url('admission/guest');?>"><i class="fa fa-sign-out"></i> List Buku Tamu</a></li>
 						<li <?=isset($admission_settings) ? 'class="active"':'';?>><a href="<?=site_url('admission/admission_settings');?>"><i class="fa fa-sign-out"></i> Pengaturan</a></li>
 						<li <?=isset($registrants) ? 'class="active"':'';?>><a href="<?=site_url('admission/registrants');?>"><i class="fa fa-sign-out"></i> Calon <?=__session('_student')?> Baru</a></li>
 						<li <?=isset($admission_phases) ? 'class="active"':'';?>><a href="<?=site_url('admission/admission_phases');?>"><i class="fa fa-sign-out"></i> Gelombang Pendaftaran</a></li>
