@@ -17,3 +17,5 @@ ERROR - 2020-11-26 13:17:54 --> Query error: You have an error in your SQL synta
 		
 		AND x1.id = 1
 		
+ERROR - 2020-11-26 08:02:57 --> 404 Page Not Found: academic/Guest/pagination
+ERROR - 2020-11-26 08:03:27 --> 404 Page Not Found: academic/Guest/pagination
