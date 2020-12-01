@@ -1,10 +1,25 @@
+<?php if ($this->session->has_userdata('success')) { ?>
+                  <script type="text/javascript">alert("<?= $this->session->flashdata('success'); ?>")</script>
+                <?php } ?>
 <div class="col-lg-12 col-md-12 col-sm-12 ">
 	<h5 class="page-title mb-3"><?=strtoupper($page_title)?></h5>
 	<div class="card rounded-0 border border-secondary mb-3">
+			<form action="<?= base_url() ?>/public/admission_form/registration" method="POST">
 		<div class="card-body">
-			<form>
 				<h6 class="page-title mb-3">Registrasi <?=__session('_student')?></h6>
-				<div class="form-group row mb-2">
+                <div class="form-group row mb-2">
+                  <label class="col-sm-4 control-label">Tahun Ajaran <span style="color: red">*</span></label>
+                  <!-- <div class="row"> -->
+                    <div class="col-sm-2">
+                      <input type="number" required="" name="first_school_year" class="form-control form-control-sm rounded-0 border border-secondary" id="first_school_year" placeholder="" value="<?=date("Y")?>">
+                    </div>
+                    <div class="col-sm-1" style="font-size: 24px; text-align: center; width: 39px;">/</div>
+                    <div class="col-sm-2">
+                      <input type="number" required="" name="last_school_year" class="form-control form-control-sm rounded-0 border border-secondary" id="last_school_year" placeholder="" value="<?=date("Y")+1?>">
+                    </div>
+                  <!-- </div> -->
+                </div>
+				<!-- <div class="form-group row mb-2">
 					<label for="is_transfer" class="col-sm-4 control-label">Jenis Pendaftaran <span style="color: red">*</span></label>
 					<div class="col-sm-8">
 						<?=form_dropdown('is_transfer', ['' => 'Pilih :', 'false' => 'Baru', 'true' => 'Pindahan'], set_value('is_transfer'), 'class="custom-select custom-select-sm rounded-0 border border-secondary" id="is_transfer"')?>
@@ -25,7 +40,7 @@
 							<option></option>
 						</select>
 					</div>
-				</div>
+				</div> -->
 
 				<!-- Khusus SMA/SMK/PT -->
 				<!-- <?php if (__session('major_count') > 0) { ?>
@@ -46,43 +61,19 @@
 				<!-- Khusus SMP/Sederajat dan SMA/Sederajat -->
 				<?php if (__session('school_level') == 2 || __session('school_level') == 3 || __session('school_level') == 4) { ?>
 					<div class="form-group row mb-2">
-						<label for="prev_school" class="col-sm-4 control-label">Asal Sekolah</label>
+						<label for="prev_school" class="col-sm-4 control-label">Asal Sekolah <span style="color: red">*</span></label>
 						<div class="col-sm-8">
 							<input type="text" value="<?php echo set_value('prev_school')?>" class="form-control form-control-sm rounded-0 border border-secondary" id="prev_school" name="prev_school">
 						</div>
 					</div>
 					<div class="form-group row mb-2">
-						<label for="prev_exam_number" class="col-sm-4 control-label">Nomor Peserta Ujian Nasional Sebelumnya</label>
+						<label for="graduation_year" class="col-sm-4 control-label">Tahun Kelulusan <span style="color: red">*</span></label>
 						<div class="col-sm-8">
-							<input type="text" value="<?php echo set_value('prev_exam_number')?>" class="form-control form-control-sm rounded-0 border border-secondary" id="prev_exam_number" name="prev_exam_number">
-						</div>
-					</div>
-					<div class="form-group row mb-2">
-						<label for="paud" class="col-sm-4 control-label">Apakah pernah PAUD</label>
-						<div class="col-sm-8">
-							<?=form_dropdown('paud', ['' => 'Pilih :', 'false' => 'Tidak', 'true' => 'Ya'], set_value('paud'), 'class="custom-select custom-select-sm rounded-0 border border-secondary" id="paud"')?>
-						</div>
-					</div>
-					<div class="form-group row mb-2">
-						<label for="tk" class="col-sm-4 control-label">Apakah pernah TK</label>
-						<div class="col-sm-8">
-							<?=form_dropdown('tk', ['' => 'Pilih :', 'false' => 'Tidak', 'true' => 'Ya'], set_value('tk'), 'class="custom-select custom-select-sm rounded-0 border border-secondary" id="tk"')?>
-						</div>
-					</div>
-					<div class="form-group row mb-2">
-						<label for="skhun" class="col-sm-4 control-label">Nomor Seri SKHUN Sebelumnya</label>
-						<div class="col-sm-8">
-							<input type="text" value="<?php echo set_value('skhun')?>" class="form-control form-control-sm rounded-0 border border-secondary" id="skhun" name="skhun" placeholder="Nomor Surat Keterangan Hasil Ujian Nasional">
-						</div>
-					</div>
-					<div class="form-group row mb-2">
-						<label for="prev_diploma_number" class="col-sm-4 control-label">Nomor Seri Ijazah Sebelumnya</label>
-						<div class="col-sm-8">
-							<input type="text" value="<?php echo set_value('prev_diploma_number')?>" class="form-control form-control-sm rounded-0 border border-secondary" id="prev_diploma_number" name="prev_diploma_number" placeholder="Nomor Seri Ijazah Sebelumnya">
+							<input type="number" value="<?php echo set_value('graduation_year')?>" class="form-control form-control-sm rounded-0 border border-secondary" id="graduation_year" name="graduation_year">
 						</div>
 					</div>
 				<?php } ?>
-				<div class="form-group row mb-2">
+				<!-- <div class="form-group row mb-2">
 					<label for="hobby" class="col-sm-4 control-label">Hobi</label>
 					<div class="col-sm-8">
 						<input type="text" value="<?php echo set_value('hobby')?>" class="form-control form-control-sm rounded-0 border border-secondary" id="hobby" name="hobby">
@@ -93,7 +84,7 @@
 					<div class="col-sm-8">
 						<input type="text" value="<?php echo set_value('ambition')?>" class="form-control form-control-sm rounded-0 border border-secondary" id="ambition" name="ambition">
 					</div>
-				</div>
+				</div> -->
 
 				<!-- Biodata -->
 				<h6 class="page-title mb-3">Data Pribadi</h6>
@@ -106,44 +97,14 @@
 				<div class="form-group row mb-2">
 					<label for="gender" class="col-sm-4 control-label">Jenis Kelamin <span style="color: red">*</span></label>
 					<div class="col-sm-8">
-						<?=form_dropdown('gender', ['' => 'Pilih :', 'M' => 'Laki-laki', 'F' => 'Perempuan'], '', 'class="custom-select custom-select-sm rounded-0 border border-secondary" id="gender"')?>
+						<!-- <?=form_dropdown('gender', ['' => 'Pilih :', 'M' => 'Laki-laki', 'F' => 'Perempuan'], '', 'class="custom-select custom-select-sm rounded-0 border border-secondary" id="gender"')?> -->
+                      <select name="gender" class="custom-select custom-select-sm rounded-0 border border-secondary" required>
+                          <option value="">-- Pilih : --</option>
+                          <option value="Laki-laki">&nbsp;Laki-laki</option>
+                          <option value="Perempuan">&nbsp;Perempuan</option>
+                      </select>
 					</div>
 				</div>
-
-				<!-- Khusus SMP/Sederajat, SMA/Sederajat -->
-				<?php if (__session('school_level') == 2 || __session('school_level') == 3 || __session('school_level') == 4) { ?>
-					<div class="form-group row mb-2">
-						<label for="nisn" class="col-sm-4 control-label">NISN</label>
-						<div class="col-sm-8">
-							<input type="text" value="<?php echo set_value('nisn')?>" class="form-control form-control-sm rounded-0 border border-secondary" id="nisn" name="nisn" placeholder="Nomor Induk Sekolah Nasional">
-						</div>
-					</div>
-				<?php } ?>
-
-				<div class="form-group row mb-2">
-					<label for="nkk" class="col-sm-4 control-label">No. KK <!-- <span style="color: red">*</span> --></label>
-					<div class="col-sm-8">
-						<input type="text" value="<?php echo set_value('nkk')?>" class="form-control form-control-sm rounded-0 border border-secondary" id="nkk" name="nkk" placeholder="Nomor Kartu Keluarga">
-					</div>
-				</div>
-
-				<!-- Khusus Selain SD -->
-				<?php if (__session('school_level') != 1) { ?>
-					<div class="form-group row mb-2">
-						<label for="nik" class="col-sm-4 control-label">NIK <span style="color: red">*</span></label>
-						<div class="col-sm-8">
-							<input type="text" value="<?php echo set_value('nik')?>" class="form-control form-control-sm rounded-0 border border-secondary" id="nik" name="nik" placeholder="Nomor Induk Kependudukan">
-						</div>
-					</div>
-				<?php } ?>
-
-				<div class="form-group row mb-2">
-					<label for="no_akta" class="col-sm-4 control-label">No. Akta Kelahiran <!-- <span style="color: red">*</span> --></label>
-					<div class="col-sm-8">
-						<input type="text" value="<?php echo set_value('no_akta')?>" class="form-control form-control-sm rounded-0 border border-secondary" id="no_akta" name="no_akta" placeholder="Nomor Akta Kelahiran">
-					</div>
-				</div>
-
 				<div class="form-group row mb-2">
 					<label for="birth_place" class="col-sm-4 control-label">Tempat Lahir <span style="color: red">*</span></label>
 					<div class="col-sm-8">
@@ -161,40 +122,11 @@
 						</div>
 					</div>
 				</div>
+				
 				<div class="form-group row mb-2">
-					<label for="religion_id" class="col-sm-4 control-label">Agama <span style="color: red">*</span></label>
+					<label for="address" class="col-sm-4 control-label">Alamat <span style="color: red">*</span></label>
 					<div class="col-sm-8">
-						<?=form_dropdown('religion_id', $religions, set_value('religion_id'), 'class="custom-select custom-select-sm rounded-0 border border-secondary" id="religion_id"')?>
-					</div>
-				</div>
-				<div class="form-group row mb-2">
-					<label for="special_need_id" class="col-sm-4 control-label">Kebutuhan Khusus</label>
-					<div class="col-sm-8">
-						<?=form_dropdown('special_need_id', $special_needs, set_value('special_need_id'), 'class="custom-select custom-select-sm rounded-0 border border-secondary" id="special_need_id"')?>
-					</div>
-				</div>
-				<div class="form-group row mb-2">
-					<label for="street_address" class="col-sm-4 control-label">Alamat Jalan <span style="color: red">*</span></label>
-					<div class="col-sm-8">
-						<textarea rows="4" name="street_address" id="street_address" class="form-control form-control-sm rounded-0 border border-secondary"><?php echo set_value('street_address')?></textarea>
-					</div>
-				</div>
-				<div class="form-group row mb-2">
-					<label for="rt" class="col-sm-4 control-label">RT</label>
-					<div class="col-sm-8">
-						<input type="text" value="<?php echo set_value('rt')?>" class="form-control form-control-sm rounded-0 border border-secondary" id="rt" name="rt" placeholder="Rukun Tetangga">
-					</div>
-				</div>
-				<div class="form-group row mb-2">
-					<label for="rw" class="col-sm-4 control-label">RW</label>
-					<div class="col-sm-8">
-						<input type="text" value="<?php echo set_value('rw')?>" class="form-control form-control-sm rounded-0 border border-secondary" id="rw" name="rw" placeholder="Rukun Warga">
-					</div>
-				</div>
-				<div class="form-group row mb-2">
-					<label for="sub_village" class="col-sm-4 control-label">Nama Dusun</label>
-					<div class="col-sm-8">
-						<input type="text" value="<?php echo set_value('sub_village')?>" class="form-control form-control-sm rounded-0 border border-secondary" id="sub_village" name="sub_village">
+						<textarea rows="4" name="address" id="address" class="form-control form-control-sm rounded-0 border border-secondary"><?php echo set_value('address')?></textarea>
 					</div>
 				</div>
 				<div class="form-group row mb-2">
@@ -210,98 +142,21 @@
 					</div>
 				</div>
 				<div class="form-group row mb-2">
-					<label for="district" class="col-sm-4 control-label">Kabupaten <span style="color: red">*</span></label>
+					<label for="district" class="col-sm-4 control-label">Kabupaten</label>
 					<div class="col-sm-8">
 						<input type="text" value="<?php echo set_value('district')?>" class="form-control form-control-sm rounded-0 border border-secondary" id="district" name="district">
 					</div>
 				</div>
-				<div class="form-group row mb-2">
-					<label for="postal_code" class="col-sm-4 control-label">Kode Pos</label>
-					<div class="col-sm-8">
-						<input type="text" value="<?php echo set_value('postal_code')?>" class="form-control form-control-sm rounded-0 border border-secondary" id="postal_code" name="postal_code">
-					</div>
-				</div>
-				<div class="form-group row mb-2">
-					<label for="residence_id" class="col-sm-4 control-label">Tempat Tinggal</label>
-					<div class="col-sm-8">
-						<?=form_dropdown('residence_id', $residences, set_value('residence_id'), 'class="form-control form-control-sm rounded-0 border border-secondary" id="residence_id"')?>
-					</div>
-				</div>
-				<div class="form-group row mb-2">
-					<label for="transportation_id" class="col-sm-4 control-label">Moda Transportasi</label>
-					<div class="col-sm-8">
-						<?=form_dropdown('transportation_id', $transportations, set_value('transportation_id'), 'class="custom-select custom-select-sm rounded-0 border border-secondary" id="transportation_id"')?>
-					</div>
-				</div>
-				<div class="form-group row mb-2">
+				<!-- <div class="form-group row mb-2">
 					<label for="mobile_phone" class="col-sm-4 control-label">Nomor HP <span style="color: red">*</span></label>
 					<div class="col-sm-8">
 						<input type="text" value="<?php echo set_value('mobile_phone')?>" class="form-control form-control-sm rounded-0 border border-secondary" id="mobile_phone" name="mobile_phone">
 					</div>
-				</div>
+				</div> -->
 				<div class="form-group row mb-2">
-					<label for="phone" class="col-sm-4 control-label">Nomor Telepon</label>
+					<label for="phone" class="col-sm-4 control-label">Nomor Telepon / HP</label>
 					<div class="col-sm-8">
 						<input type="text" value="<?php echo set_value('phone')?>" class="form-control form-control-sm rounded-0 border border-secondary" id="phone" name="phone">
-					</div>
-				</div>
-				<div class="form-group row mb-2">
-					<label for="email" class="col-sm-4 control-label">E-mail Pribadi</label>
-					<div class="col-sm-8">
-						<input type="text" value="<?php echo set_value('email')?>" class="form-control form-control-sm rounded-0 border border-secondary" id="email" name="email">
-					</div>
-				</div>
-				<div class="form-group row mb-2">
-					<label for="sktm" class="col-sm-4 control-label">No. Surat Keterangan Tidak Mampu (SKTM)</label>
-					<div class="col-sm-8">
-						<input type="text" value="<?php echo set_value('sktm')?>" class="form-control form-control-sm rounded-0 border border-secondary" id="sktm" name="sktm">
-					</div>
-				</div>
-				<div class="form-group row mb-2">
-					<label for="kks" class="col-sm-4 control-label">No. Kartu Keluarga Sejahtera (KKS)</label>
-					<div class="col-sm-8">
-						<input type="text" value="<?php echo set_value('kks')?>" class="form-control form-control-sm rounded-0 border border-secondary" id="kks" name="kks">
-					</div>
-				</div>
-				<div class="form-group row mb-2">
-					<label for="kps" class="col-sm-4 control-label">No. Kartu Pra Sejahtera (KPS)</label>
-					<div class="col-sm-8">
-						<input type="text" value="<?php echo set_value('kps')?>" class="form-control form-control-sm rounded-0 border border-secondary" id="kps" name="kps">
-					</div>
-				</div>
-				<div class="form-group row mb-2">
-					<label for="kip" class="col-sm-4 control-label">No. Kartu Indonesia Pintar (KIP)</label>
-					<div class="col-sm-8">
-						<input type="text" value="<?php echo set_value('kip')?>" class="form-control form-control-sm rounded-0 border border-secondary" id="kip" name="kip">
-					</div>
-				</div>
-				<div class="form-group row mb-2">
-					<label for="kis" class="col-sm-4 control-label">No. Kartu Indonesia Sehat (KIS)</label>
-					<div class="col-sm-8">
-						<input type="text" value="<?php echo set_value('kis')?>" class="form-control form-control-sm rounded-0 border border-secondary" id="kis" name="kis">
-					</div>
-				</div>
-				<div class="form-group row mb-2">
-					<label for="citizenship" class="col-sm-4 control-label">Kewarganegaraan <span style="color: red">*</span></label>
-					<div class="col-sm-8">
-						<select name="citizenship" id="citizenship" class="custom-select custom-select-sm rounded-0 border border-secondary" onchange="change_country_field()" onblur="change_country_field()" onmouseup="change_country_field()">
-							<option value="">Pilih :</option>
-							<option value="WNI">Warga Negara Indonesia (WNI)</option>
-							<option value="WNA">Warga Negara Asing (WNA)</option>
-						</select>
-					</div>
-				</div>
-				<div class="form-group row mb-2 country">
-					<label for="country" class="col-sm-4 control-label">Nama Negara</label>
-					<div class="col-sm-8">
-						<input type="text" value="<?php echo set_value('country')?>" class="form-control form-control-sm rounded-0 border border-secondary" id="country" name="country" placeholder="Diisi jika warga negara asing">
-					</div>
-				</div>
-				<div class="form-group row mb-2">
-					<label for="country" class="col-sm-4 control-label">Photo</label>
-					<div class="col-sm-8">
-						<input type="file" id="photo" name="photo">
-						<small class="form-text text-muted">Foto harus JPG dan ukuran file maksimal 1 Mb</small>
 					</div>
 				</div>
 
@@ -314,51 +169,25 @@
 					</div>
 				</div>
 				<div class="form-group row mb-2">
-						<label for="father_nik" class="col-sm-4 control-label">NIK <span style="color: red">*</span></label>
-						<div class="col-sm-8">
-							<input type="text" value="<?php echo set_value('father_nik')?>" class="form-control form-control-sm rounded-0 border border-secondary" id="father_nik" name="father_nik" placeholder="Nomor Induk Kependudukan Ayah Kandung">
-						</div>
-					</div>
-				<div class="form-group row mb-2">
-					<label for="father_birth_year" class="col-sm-4 control-label">Tahun Lahir <span style="color: red">*</span></label>
+					<label for="father_employment" class="col-sm-4 control-label">Pekerjaan</label>
 					<div class="col-sm-8">
-						<input type="text" value="<?php echo set_value('father_birth_year')?>" class="form-control form-control-sm rounded-0 border border-secondary" id="father_birth_year" name="father_birth_year" placeholder="Tahun Lahir Ayah Kandung. contoh : 1965">
-					</div>
-				</div>
-				<div class="form-group row mb-2">
-					<label for="father_mobile_phone" class="col-sm-4 control-label">Nomor HP <span style="color: red">*</span></label>
-					<div class="col-sm-8">
-						<input type="text" value="<?php echo set_value('father_mobile_phone')?>" class="form-control form-control-sm rounded-0 border border-secondary" id="father_mobile_phone" name="father_mobile_phone">
-					</div>
-				</div>
-				<div class="form-group row mb-2">
-					<label for="father_phone" class="col-sm-4 control-label">Nomor Telepon</label>
-					<div class="col-sm-8">
-						<input type="text" value="<?php echo set_value('father_phone')?>" class="form-control form-control-sm rounded-0 border border-secondary" id="father_phone" name="father_phone">
-					</div>
-				</div>
-				<div class="form-group row mb-2">
-					<label for="father_education_id" class="col-sm-4 control-label">Pendidikan</label>
-					<div class="col-sm-8">
-						<?=form_dropdown('father_education_id', $educations, set_value('father_education_id'), 'class="custom-select custom-select-sm rounded-0 border border-secondary" id="father_education_id"')?>
-					</div>
-				</div>
-				<div class="form-group row mb-2">
-					<label for="father_employment_id" class="col-sm-4 control-label">Pekerjaan</label>
-					<div class="col-sm-8">
-						<?=form_dropdown('father_employment_id', $employments, set_value('father_employment_id'), 'class="custom-select custom-select-sm rounded-0 border border-secondary" id="father_employment_id"')?>
-					</div>
-				</div>
-				<div class="form-group row mb-2">
-					<label for="father_monthly_income_id" class="col-sm-4 control-label">Penghasilan Bulanan</label>
-					<div class="col-sm-8">
-						<?=form_dropdown('father_monthly_income_id', $monthly_incomes, set_value('father_monthly_income_id'), 'class="custom-select custom-select-sm rounded-0 border border-secondary" id="father_monthly_income_id"')?>
-					</div>
-				</div>
-				<div class="form-group row mb-2">
-					<label for="father_special_need_id" class="col-sm-4 control-label">Kebutuhan Khusus</label>
-					<div class="col-sm-8">
-						<?=form_dropdown('father_special_need_id', $special_needs, set_value('father_special_need_id'), 'class="custom-select custom-select-sm rounded-0 border border-secondary" id="father_special_need_id"')?>
+						<!-- <?=form_dropdown('father_employment', $employments, set_value('father_employment'), 'class="custom-select custom-select-sm rounded-0 border border-secondary" id="father_employment"')?> -->
+                      <select name="father_employment" class="custom-select custom-select-sm rounded-0 border border-secondary" required>
+                          <option value="">-- Pilih : --</option>
+                          <option>Buruh</option>
+                          <option>Karyawan Swasta</option>
+                          <option>Nelayan</option>
+                          <option>Pedagang Besar</option>
+                          <option>Pedagang Kecil</option>
+                          <option>Pensiunan</option>
+                          <option>Petani</option> 
+                          <option>Peternak</option> 
+                          <option>PNS/TNI/POLISI</option>   
+                          <option>Wiraswasta</option>
+                          <option>Wirausaha</option>
+                          <option>Tidak Bekerja</option>
+                          <option>Lain-Lain</option> 
+                      </select>
 					</div>
 				</div>
 
@@ -371,144 +200,28 @@
 					</div>
 				</div>
 				<div class="form-group row mb-2">
-						<label for="mother_nik" class="col-sm-4 control-label">NIK <span style="color: red">*</span></label>
-						<div class="col-sm-8">
-							<input type="text" value="<?php echo set_value('mother_nik')?>" class="form-control form-control-sm rounded-0 border border-secondary" id="mother_nik" name="mother_nik" placeholder="Nomor Induk Kependudukan Ibu Kandung ">
-						</div>
-					</div>
-				<div class="form-group row mb-2">
-					<label for="mother_birth_year" class="col-sm-4 control-label">Tahun Lahir</label>
+					<label for="mother_employment" class="col-sm-4 control-label">Pekerjaan</label>
 					<div class="col-sm-8">
-						<input type="text" value="<?php echo set_value('mother_birth_year')?>" class="form-control form-control-sm rounded-0 border border-secondary" id="mother_birth_year" name="mother_birth_year" placeholder="Tahun Lahir Ibu Kandung. contoh : 1965">
+						<!-- <?=form_dropdown('mother_employment', $employments, set_value('mother_employment'), 'class="custom-select custom-select-sm rounded-0 border border-secondary" id="mother_employment"')?> -->
+                      <select name="mother_employment" class="custom-select custom-select-sm rounded-0 border border-secondary" required>
+                          <option value="">-- Pilih : --</option>
+                          <option>Buruh</option>
+                          <option>Karyawan Swasta</option>
+                          <option>Nelayan</option>
+                          <option>Pedagang Besar</option>
+                          <option>Pedagang Kecil</option>
+                          <option>Pensiunan</option>
+                          <option>Petani</option> 
+                          <option>Peternak</option> 
+                          <option>PNS/TNI/POLISI</option>   
+                          <option>Wiraswasta</option>
+                          <option>Wirausaha</option>
+                          <option>Tidak Bekerja</option>
+                          <option>Lain-Lain</option> 
+					</select>
 					</div>
 				</div>
-				<div class="form-group row mb-2">
-					<label for="mother_mobile_phone" class="col-sm-4 control-label">Nomor HP <span style="color: red">*</span></label>
-					<div class="col-sm-8">
-						<input type="text" value="<?php echo set_value('mother_mobile_phone')?>" class="form-control form-control-sm rounded-0 border border-secondary" id="mother_mobile_phone" name="mother_mobile_phone">
-					</div>
-				</div>
-				<div class="form-group row mb-2">
-					<label for="mother_phone" class="col-sm-4 control-label">Nomor Telepon</label>
-					<div class="col-sm-8">
-						<input type="text" value="<?php echo set_value('mother_phone')?>" class="form-control form-control-sm rounded-0 border border-secondary" id="mother_phone" name="mother_phone">
-					</div>
-				</div>
-				<div class="form-group row mb-2">
-					<label for="mother_education_id" class="col-sm-4 control-label">Pendidikan</label>
-					<div class="col-sm-8">
-						<?=form_dropdown('mother_education_id', $educations, set_value('mother_education_id'), 'class="custom-select custom-select-sm rounded-0 border border-secondary" id="mother_education_id"')?>
-					</div>
-				</div>
-				<div class="form-group row mb-2">
-					<label for="mother_employment_id" class="col-sm-4 control-label">Pekerjaan</label>
-					<div class="col-sm-8">
-						<?=form_dropdown('mother_employment_id', $employments, set_value('mother_employment_id'), 'class="custom-select custom-select-sm rounded-0 border border-secondary" id="mother_employment_id"')?>
-					</div>
-				</div>
-				<div class="form-group row mb-2">
-					<label for="mother_monthly_income_id" class="col-sm-4 control-label">Penghasilan Bulanan</label>
-					<div class="col-sm-8">
-						<?=form_dropdown('mother_monthly_income_id', $monthly_incomes, set_value('mother_monthly_income_id'), 'class="custom-select custom-select-sm rounded-0 border border-secondary" id="mother_monthly_income_id"')?>
-					</div>
-				</div>
-				<div class="form-group row mb-2">
-					<label for="mother_special_need_id" class="col-sm-4 control-label">Kebutuhan Khusus</label>
-					<div class="col-sm-8">
-						<?=form_dropdown('mother_special_need_id', $special_needs, set_value('mother_special_need_id'), 'class="custom-select custom-select-sm rounded-0 border border-secondary" id="mother_special_need_id"')?>
-					</div>
-				</div>
-
-				<!-- Wali -->
-				<h6 class="page-title mb-3">Data Wali</h6>
-				<div class="form-group row mb-2">
-					<label for="guardian_name" class="col-sm-4 control-label">Nama Wali</label>
-					<div class="col-sm-8">
-						<input type="text" value="<?php echo set_value('guardian_name')?>" class="form-control form-control-sm rounded-0 border border-secondary" id="guardian_name" name="guardian_name">
-					</div>
-				</div>
-				<div class="form-group row mb-2">
-						<label for="guardian_nik" class="col-sm-4 control-label">NIK Wali <span style="color: red">*</span></label>
-						<div class="col-sm-8">
-							<input type="text" value="<?php echo set_value('guardian_nik')?>" class="form-control form-control-sm rounded-0 border border-secondary" id="guardian_nik" name="guardian_nik" placeholder="Nomor Induk Kependudukan Wali">
-						</div>
-					</div>
-				<div class="form-group row mb-2">
-					<label for="guardian_birth_year" class="col-sm-4 control-label">Tahun Lahir</label>
-					<div class="col-sm-8">
-						<input type="text" value="<?php echo set_value('guardian_birth_year')?>" class="form-control form-control-sm rounded-0 border border-secondary" id="guardian_birth_year" name="guardian_birth_year" placeholder="Tahun Lahir Wali. contoh : 1965">
-					</div>
-				</div>
-				<div class="form-group row mb-2">
-					<label for="guardian_mobile_phone" class="col-sm-4 control-label">Nomor HP <span style="color: red">*</span></label>
-					<div class="col-sm-8">
-						<input type="text" value="<?php echo set_value('guardian_mobile_phone')?>" class="form-control form-control-sm rounded-0 border border-secondary" id="guardian_mobile_phone" name="guardian_mobile_phone">
-					</div>
-				</div>
-				<div class="form-group row mb-2">
-					<label for="guardian_phone" class="col-sm-4 control-label">Nomor Telepon</label>
-					<div class="col-sm-8">
-						<input type="text" value="<?php echo set_value('guardian_phone')?>" class="form-control form-control-sm rounded-0 border border-secondary" id="guardian_phone" name="guardian_phone">
-					</div>
-				</div>
-				<div class="form-group row mb-2">
-					<label for="guardian_education_id" class="col-sm-4 control-label">Pendidikan</label>
-					<div class="col-sm-8">
-						<?=form_dropdown('guardian_education_id', $educations, set_value('guardian_education_id'), 'class="custom-select custom-select-sm rounded-0 border border-secondary" id="guardian_education_id"')?>
-					</div>
-				</div>
-				<div class="form-group row mb-2">
-					<label for="guardian_employment_id" class="col-sm-4 control-label">Pekerjaan</label>
-					<div class="col-sm-8">
-						<?=form_dropdown('guardian_employment_id', $employments, set_value('guardian_employment_id'), 'class="custom-select custom-select-sm rounded-0 border border-secondary" id="guardian_employment_id"')?>
-					</div>
-				</div>
-				<div class="form-group row mb-2">
-					<label for="guardian_monthly_income_id" class="col-sm-4 control-label">Penghasilan Bulanan</label>
-					<div class="col-sm-8">
-						<?=form_dropdown('guardian_monthly_income_id', $monthly_incomes, set_value('guardian_monthly_income_id'), 'class="custom-select custom-select-sm rounded-0 border border-secondary" id="guardian_monthly_income_id"')?>
-					</div>
-				</div>
-
-				<!-- Data Periodik -->
-				<h6 class="page-title mb-3">Data Periodik</h6>
-				<div class="form-group row mb-2">
-					<label for="height" class="col-sm-4 control-label">Tinggi Badan (Cm)</label>
-					<div class="col-sm-8">
-						<input type="number" value="<?php echo set_value('height')?>" class="form-control form-control-sm rounded-0 border border-secondary" id="height" name="height">
-					</div>
-				</div>
-				<div class="form-group row mb-2">
-					<label for="weight" class="col-sm-4 control-label">Berat Badan (Kg)</label>
-					<div class="col-sm-8">
-						<input type="number" value="<?php echo set_value('weight')?>" class="form-control form-control-sm rounded-0 border border-secondary" id="weight" name="weight">
-					</div>
-				</div>
-				<div class="form-group row mb-2">
-					<label for="head_cir" class="col-sm-4 control-label">Lingkar Kepala (Cm)</label>
-					<div class="col-sm-8">
-						<input type="number" value="<?php echo set_value('head_cir')?>" class="form-control form-control-sm rounded-0 border border-secondary" id="head_cir" name="head_cir">
-					</div>
-				</div>
-				<div class="form-group row mb-2">
-					<label for="mileage" class="col-sm-4 control-label">Jarak Tempat Tinggal ke Sekolah (Km)</label>
-					<div class="col-sm-8">
-						<input type="text" value="<?php echo set_value('mileage')?>" class="form-control form-control-sm rounded-0 border border-secondary" id="mileage" name="mileage">
-					</div>
-				</div>
-				<div class="form-group row mb-2">
-					<label for="traveling_time" class="col-sm-4 control-label">Waktu Tempuh ke Sekolah (Menit)</label>
-					<div class="col-sm-8">
-						<input type="number" value="<?php echo set_value('traveling_time')?>" class="form-control form-control-sm rounded-0 border border-secondary" id="traveling_time" name="traveling_time">
-					</div>
-				</div>
-				<div class="form-group row mb-2">
-					<label for="sibling_number" class="col-sm-4 control-label">Jumlah Saudara Kandung</label>
-					<div class="col-sm-8">
-						<input type="number" value="<?php echo set_value('sibling_number')?>" class="form-control form-control-sm rounded-0 border border-secondary" id="sibling_number" name="sibling_number">
-					</div>
-				</div>
-
+<!-- 
 				<h6 class="page-title mb-3">Pernyataan dan Keamanan</h6>
 				<div class="form-group row mb-2">
 					<label for="declaration" class="col-sm-4 control-label">Pernyataan <span style="color: red">*</span></label>
@@ -520,21 +233,21 @@
 							</label>
 						</div>
 					</div>
-				</div>
+				</div> -->
 				<div class="form-group row mb-2">
 					<label class="col-sm-4 control-label"></label>
 					<div class="col-sm-8">
 						<div class="g-recaptcha" data-sitekey="<?=$recaptcha_site_key?>"></div>
 					</div>
 				</div>
-			</form>
 		</div>
 		<div class="card-footer">
 			<div class="form-group row mb-0">
 				<div class="offset-sm-4 col-sm-8">
-					<button type="button" onclick="student_registration(); return false;" class="btn action-button rounded-0"><i class="fa fa-send"></i> Simpan Formulir Pendaftaran</button>
+					<button type="submit" class="btn action-button rounded-0"><i class="fa fa-send"></i> Simpan Formulir Pendaftaran</button>
 				</div>
 			</div>
 		</div>
+			</form>
 	</div>
 </div>

@@ -23,16 +23,19 @@ class Admission_form extends Public_Controller {
 	public function __construct() {
 		parent::__construct();
 		// If close, redirect
-		if (__session('admission_status') == 'close') return redirect(base_url());
+		// if (__session('admission_status') == 'close') return redirect(base_url());
 		// If not in array, redirect
-		$admission_start_date = __session('admission_start_date');
-		$admission_end_date = __session('admission_end_date');
-		if (NULL !== $admission_start_date && NULL !== $admission_end_date) {
-			$date_range = array_date($admission_start_date, $admission_end_date);
-			if ( ! in_array(date('Y-m-d'), $date_range)) {
-				return redirect(base_url());
-			}
-		}
+		// $admission_start_date = __session('admission_start_date');
+		// $admission_end_date = __session('admission_end_date');
+		// if (NULL !== $admission_start_date && NULL !== $admission_end_date) {
+		// 	$date_range = array_date($admission_start_date, $admission_end_date);
+		// 	if ( ! in_array(date('Y-m-d'), $date_range)) {
+		// 		return redirect(base_url());
+		// 	}
+		// }
+        $this->load->model("registrants_model_junior");
+        $this->load->model("registrants_model_senior");
+        $this->load->library('form_validation');
 		$this->load->model('m_registrants');
 		$this->pk = M_registrants::$pk;
 		$this->table = M_registrants::$table;
@@ -46,7 +49,7 @@ class Admission_form extends Public_Controller {
 		$this->load->helper('form');
 		$this->load->model(['m_majors', 'm_settings']);
 		$this->vars['recaptcha_site_key'] = __session('recaptcha_site_key');
-		$this->vars['page_title'] = 'Formulir Penerimaan ' . __session('_student') . ' Baru Tahun ' . __session('admission_year');
+		$this->vars['page_title'] = 'Formulir Penerimaan ' . __session('_student') . ' Baru ';
 		$this->vars['religions'] = ['' => 'Pilih :'] + get_options('religions', FALSE);
 		$this->vars['special_needs'] = get_options('special_needs', FALSE);
 		$this->vars['residences'] = ['' => 'Pilih :'] + get_options('residences', FALSE);
@@ -58,6 +61,20 @@ class Admission_form extends Public_Controller {
 		$this->vars['majors'] = ['' => 'Pilih :'] + $this->m_majors->dropdown();
 		$this->vars['content'] = 'themes/'.theme_folder().'/admission-form';
 		$this->load->view('themes/'.theme_folder().'/index', $this->vars);
+	}
+
+	public function registration()
+	{
+  //       $school_level = $this->input->post("school_level");
+		// if ($school_level == "SMA") {
+		// 	$registrants = $this->registrants_model_senior;
+  //       	$registrants->save();
+		// }elseif ($school_level == "SMP") {
+			$registrants = $this->registrants_model_junior;
+        	$registrants->save();
+		// }
+        $this->session->set_flashdata('success', 'Your data is successfully entered');
+        redirect('formulir-penerimaan-peserta-didik-baru');
 	}
 
 	/**
